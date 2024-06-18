@@ -53,6 +53,63 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <?php
+                foreach ($hotels as $hotelList) {?>
+
+                    <div class="card col-4">
+
+                        <?php foreach ($hotelList as $key => $hotel) {
+
+                        if($key == 'name') {?>
+
+                            <div class="card-header">
+
+                                <h2>
+                                    <?php
+                                        echo $hotelList[$key];
+                                    ?>
+                                </h2>
+                                
+                            </div>
+
+                        <?php } else {?>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <?php
+
+                                        if($key == 'parking') {
+                                            if ($hotelList[$key] == true) {
+                                                echo $key . ': ' . 'YES';
+                                            } else {
+                                                echo $key . ': ' . 'NO';
+                                            }
+
+                                        } else {    
+                                            echo $key . ': ' . $hotel;
+                                        };
+    
+                                    ?>
+                                </p>
+                            </div>
+                            
+                        <?php };
+
+                    };
+
+                    ?></div>
+
+                <?php };
+            ?>
+
+        </div>
+
+    </div>
     
 </body>
 </html>
