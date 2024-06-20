@@ -40,6 +40,22 @@
 
     ];
 
+    $filter = $hotels;
+
+    if(isset($_GET['parking-button'])) {
+        
+        $parking = $_GET['parking-button'];
+        $filter = [];
+        foreach ($hotels as $hotel) {
+
+            if($hotel['parking'] == $parking) {
+                $filter[] = $hotel;
+            };
+
+        };
+
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +69,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+
+    <h1 class="text-center mt-3">Hotels</h1>
+
+    <div class="container search w-50 my-5">
+
+        <form action="index.php" method="GET" class="m-0 d-flex flex-row align-items-center">
+
+            <span class="me-4">Parking</span>
+
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+                <input type="radio" class="btn-check" name="parking-button" value="1" id="btnradio1">
+                <label class="btn btn-outline-primary" for="btnradio1">YES</label>
+
+                <input type="radio" class="btn-check" name="parking-button" value="0" id="btnradio2">
+                <label class="btn btn-outline-primary" for="btnradio2">NO</label>
+
+            </div>
+
+            <div class="vr mx-3"></div>
+
+            <div class="input-group">
+                <input type="text" name="ratings" class="form-control" placeholder="Search for ratings" aria-describedby="btnGroupAddon">
+                <button class="input-group-text" id="btnGroupAddon">Search</button>
+            </div>
+
+        </form>
+
+    </div>
 
     
     <div class="container table">
@@ -70,7 +115,7 @@
             </thead>
             <tbody>
 
-                <?php foreach ($hotels as $hotel) : ?>
+                <?php foreach ($filter as $hotel) : ?>
 
                     <tr>
                         <td> <?php echo $hotel['name']; ?> </td>
