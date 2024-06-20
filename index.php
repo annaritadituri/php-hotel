@@ -54,7 +54,22 @@
 
         };
 
-    }
+    };
+
+    if(!empty($_GET['ratings'])) {
+
+        $change_array = [];
+        $ratings = $_GET['ratings'];
+        foreach ($filter as $hotel) {
+
+            if($hotel['vote'] >= $ratings) {
+                $change_array[] = $hotel;
+            };
+        };
+
+        $filter = $change_array;
+
+    };
 
 ?>
 
@@ -80,10 +95,10 @@
 
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 
-                <input type="radio" class="btn-check" name="parking-button" value="1" id="btnradio1">
+                <input type="radio" class="btn-check" name="parking-button" value="1" id="btnradio1" <?php if($_GET['parking-button'] == 1) :?> checked <?php endif; ?>>
                 <label class="btn btn-outline-primary" for="btnradio1">YES</label>
 
-                <input type="radio" class="btn-check" name="parking-button" value="0" id="btnradio2">
+                <input type="radio" class="btn-check" name="parking-button" value="0" id="btnradio2" <?php if($_GET['parking-button'] == 0) :?> checked <?php endif; ?>>
                 <label class="btn btn-outline-primary" for="btnradio2">NO</label>
 
             </div>
