@@ -54,60 +54,39 @@
 </head>
 <body>
 
-    <div class="container">
-
-        <div class="row">
-
-            <?php
-                foreach ($hotels as $hotelList) {?>
-
-                    <div class="card col-4">
-
-                        <?php foreach ($hotelList as $key => $hotel) {
-
-                        if($key == 'name') {?>
-
-                            <div class="card-header">
-
-                                <h2>
-                                    <?php
-                                        echo $hotelList[$key];
-                                    ?>
-                                </h2>
-                                
-                            </div>
-
-                        <?php } else {?>
-
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <?php
-
-                                        if($key == 'parking') {
-                                            if ($hotelList[$key] == true) {
-                                                echo $key . ': ' . 'YES';
-                                            } else {
-                                                echo $key . ': ' . 'NO';
-                                            }
-
-                                        } else {    
-                                            echo $key . ': ' . $hotel;
-                                        };
     
-                                    ?>
-                                </p>
-                            </div>
-                            
-                        <?php };
+    <div class="container table">
 
-                    };
+        <table class="table table-striped">
 
-                    ?></div>
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Parcheggio</th>
+                    <th scope="col">Voto</th>
+                    <th scope="col">Distanza</th>
+                </tr>
+            </thead>
+            <tbody>
 
-                <?php };
-            ?>
+                <?php foreach ($hotels as $hotel) : ?>
 
-        </div>
+                    <tr>
+                        <td> <?php echo $hotel['name']; ?> </td>
+                        <td> <?php echo $hotel['description']; ?> </td>
+                        <td> <?php echo $hotel['parking'] ? 'YES' : 'NO'; ?> </td>
+                        <td> <?php echo $hotel['vote']; ?> </td>
+                        <td> <?php echo $hotel['distance_to_center'] . ' km'; ?> </td>
+                    </tr>
+
+                    <?php endforeach;
+            
+                ?>
+
+            </tbody>
+
+        </table>
 
     </div>
     
